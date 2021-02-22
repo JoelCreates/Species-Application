@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.endangeredspecies</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.content.Context</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.ViewGroup</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.AdapterView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.BaseAdapter</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.GridView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.ImageView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity {</span>
+    <span class="s1">Integer[] Animals = {R.drawable.eagle</span><span class="s0">, </span><span class="s1">R.drawable.elephant</span><span class="s0">, </span><span class="s1">R.drawable.gorilla</span><span class="s0">, </span><span class="s1">R.drawable.panda</span><span class="s0">, </span><span class="s1">R.drawable.panther</span><span class="s0">, </span><span class="s1">R.drawable.polar}</span><span class="s0">;</span>
+    <span class="s1">ImageView pic</span><span class="s0">;</span>
+
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_main)</span><span class="s0">;</span>
+        <span class="s1">GridView grid = findViewById(R.id.grid)</span><span class="s0">;</span>
+        <span class="s0">final </span><span class="s1">ImageView pic = findViewById(R.id.imgLarge)</span><span class="s0">;</span>
+        <span class="s1">grid.setAdapter(</span><span class="s0">new </span><span class="s1">ImageAdapter(</span><span class="s0">this</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">grid.setOnItemClickListener(</span><span class="s0">new </span><span class="s1">AdapterView.OnItemClickListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onItemClick(AdapterView&lt;?&gt; parent</span><span class="s0">, </span><span class="s1">View view</span><span class="s0">, int </span><span class="s1">position</span><span class="s0">, long </span><span class="s1">id) {</span>
+                <span class="s1">Toast.makeText(getBaseContext()</span><span class="s0">, </span><span class="s2">&quot;Selected Species&quot; </span><span class="s1">+ (position) + </span><span class="s3">1</span><span class="s0">, </span><span class="s1">Toast.LENGTH_SHORT).show()</span><span class="s0">;</span>
+                <span class="s1">pic.setImageResource(Animals[position])</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+    <span class="s1">}</span>
+        <span class="s0">public class </span><span class="s1">ImageAdapter </span><span class="s0">extends </span><span class="s1">BaseAdapter {</span>
+            <span class="s0">private </span><span class="s1">Context context</span><span class="s0">;</span>
+            <span class="s0">public </span><span class="s1">ImageAdapter (Context c) {</span>
+                <span class="s1">context = c</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+
+
+            <span class="s1">@Override</span>
+            <span class="s0">public int </span><span class="s1">getCount() {</span>
+                <span class="s0">return </span><span class="s1">Animals.length</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">public </span><span class="s1">Object getItem(</span><span class="s0">int </span><span class="s1">position) {</span>
+                <span class="s0">return null;</span>
+            <span class="s1">}</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">public long </span><span class="s1">getItemId(</span><span class="s0">int </span><span class="s1">position) {</span>
+                <span class="s0">return </span><span class="s3">0</span><span class="s0">;</span>
+            <span class="s1">}</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">public </span><span class="s1">View getView(</span><span class="s0">int </span><span class="s1">position</span><span class="s0">, </span><span class="s1">View convertView</span><span class="s0">, </span><span class="s1">ViewGroup parent) {</span>
+                <span class="s1">pic = </span><span class="s0">new </span><span class="s1">ImageView(context)</span><span class="s0">;</span>
+                <span class="s1">pic.setImageResource(Animals[position])</span><span class="s0">;</span>
+                <span class="s1">pic.setScaleType(ImageView.ScaleType.FIT_XY)</span><span class="s0">;</span>
+                <span class="s1">pic.setLayoutParams(</span><span class="s0">new </span><span class="s1">ViewGroup.LayoutParams(</span><span class="s3">330</span><span class="s0">, </span><span class="s3">300</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s0">return </span><span class="s1">pic</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+</pre>
+</body>
+</html>
